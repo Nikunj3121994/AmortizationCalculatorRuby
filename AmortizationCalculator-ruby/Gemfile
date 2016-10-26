@@ -1,0 +1,6 @@
+source 'https://rubygems.org'
+gem 'json'
+gem 'sinatra', '1.4.6'
+gem 'mongo_mapper', '0.13.1'
+gem 'bson_ext', '1.12.5'
+gem 'rack-cors', '0.4.0'

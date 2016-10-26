@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Amortization Calculator</title>
+	<script type="text/javascript">
+		function showRows(tableRowId){
+			switch(tableRowId){
+				case 'annual' : 
+					if(document.getElementById("annual_payment").style.display=='block'){
+						document.getElementById("annual_payment").style.display='none';
+					}else{
+						document.getElementById("annual_payment").style.display='block'
+					}
+					break;
+				case 'monthly':
+					if(document.getElementById("monthly_payment").style.display=='block'){
+						document.getElementById("monthly_payment").style.display='none';
+					}else{
+						document.getElementById("monthly_payment").style.display='block'
+					}
+					break;
+				case 'oneTime':
+					if(document.getElementById("one_time_payment").style.display=='block'){
+						document.getElementById("one_time_payment").style.display='none';
+					}else{
+						document.getElementById("one_time_payment").style.display='block'
+					}
+					break;
+				default : break;
+			}
+		}
+	</script>
+</head>
+<body>
+
+<form>
+<div align="center">
+
+<table>
+<tbody>
+	<tr>
+		<td align="middle" colspan="10"><b>Loan Terms<br>&nbsp;</b></td>
+	</tr>
+	<tr>
+			<td align="right" colspan="5"><label>Email Id</label></td>
+			<td colspan="5"><input type="email" placeholder="xyz@abc.com" id="email" pattern="\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}\b" required/></td>
+	</tr>
+	<tr>
+		<td align="right" colspan="5">Tenure (In Years):</td>
+		<td colspan="5"><input type="number" value="2" id="tenure" pattern="[0-9]" min="1" required/></td>
+	</tr>
+	<tr>
+		<td align="right" colspan="5">Interest Rate:</td>
+		<td colspan="5"><input type="text" value="10" id="interest_rate" pattern="^[0-9]+(\.[0-9]{1,2})?$"  required/> %</td>
+	</tr>
+	<tr>
+		<td align="right" colspan="4">Initial Payment Month:</td>
+		<td ><select size="1" id="initial_payment_month">
+			<option selected="" value="1">Jan</option>
+			<option value="2">Feb</option>
+			<option value="3">Mar</option>
+			<option value="4">Apr</option>
+			<option value="5">May</option>
+			<option value="6">Jun</option>
+			<option value="7">Jul</option>
+			<option value="8">Aug</option>
+			<option value="9">Sep</option>
+			<option value="10">Oct</option>
+			<option value="11">Nov</option>
+			<option value="12">Dec</option>
+			</select> </td>
+		<td align="right">Initial Payment Year:</td>
+		<td ><input type="number" min="2012" value="2016" id="initial_payment_year" required/>
+		</td>
+	</tr>
+	<tr>
+		<td align="right" colspan="5">Loan Amount:</td>
+		<td colspan="5"><input type="number" value="100000" id="loan_amount" pattern="[0-9]" min="0" required/></td>
+	</tr>
+</tbody>
+</table>
+<table>
+<tbody>
+	<tr>
+		<td align="middle" colspan="10"><input id="check_monthly_payment" type="checkbox" onclick="showRows('monthly');">Enable Monthly Prepayments:</td>
+	</tr>
+	<tr id="monthly_payment" style="display:none">
+		<td align="right">Starting Month:</td>
+		<td>
+			<select size="1" id="monthly_payment_start_month">
+			<option selected="" value="1">Jan</option>
+			<option value="2">Feb</option>
+			<option value="3">Mar</option>
+			<option value="4">Apr</option>
+			<option value="5">May</option>
+			<option value="6">Jun</option>
+			<option value="7">Jul</option>
+			<option value="8">Aug</option>
+			<option value="9">Sep</option>
+			<option value="10">Oct</option>
+			<option value="11">Nov</option>
+			<option value="12">Dec</option>
+			</select></td>
+		<td align="right">Starting Year:</td>
+		<td><input type="number" min="2016" value="2016" id="monthly_payment_start_year" />
+		</td>
+		<td>Prepayment Amount:</td>
+		<td><input type="number" min="0" value="0" id="monthly_payment_amount" /></td>
+		<td align="right">Last Payment Month:</td>
+		<td>
+			<select size="1" id="monthly_payment_end_month">
+			<option selected="" value="1">Jan</option>
+			<option value="2">Feb</option>
+			<option value="3">Mar</option>
+			<option value="4">Apr</option>
+			<option value="5">May</option>
+			<option value="6">Jun</option>
+			<option value="7">Jul</option>
+			<option value="8">Aug</option>
+			<option value="9">Sep</option>
+			<option value="10">Oct</option>
+			<option value="11">Nov</option>
+			<option value="12">Dec</option>
+			</select></td>
+		<td align="right">Last Payment Year:</td>
+		<td>
+			<input type="number" min="2016" value="2016" id="monthly_payment_end_year" />
+		</td>
+	</tr>
+</tbody>
+</table>
+<table>
+<tbody>
+	<tr>
+		<td colspan="10" align="center"><input type="checkbox" id="check_annual_payment" onclick="showRows('annual');">Enable Annual Prepayments:</td>
+	</tr>
+	<tr id="annual_payment" style="display:none">
+		<td></td>
+		<td align="right">Starting Month:</td>
+		<td>
+			<select size="1" id="annual_payment_month">
+			<option selected="" value="1">Jan</option>
+			<option value="2">Feb</option>
+			<option value="3">Mar</option>
+			<option value="4">Apr</option>
+			<option value="5">May</option>
+			<option value="6">Jun</option>
+			<option value="7">Jul</option>
+			<option value="8">Aug</option>
+			<option value="9">Sep</option>
+			<option value="10">Oct</option>
+			<option value="11">Nov</option>
+			<option value="12">Dec</option>
+			</select></td>
+		<td align="right">Starting Year:</td>
+		<td>
+			<input type="number" min="2016" value="2016" id="annual_payment_year" required/>
+		</td>
+		<td align="right">Amount:</td>
+		<td><input type="number" min="0" value="0" id="annual_payment_amount"/></td>
+		<td align="right">No of Payments:</td>
+		<td><input type="number" min="1" value="1" id="annual_no_of_payments" required/> Payments</td>
+	</tr>
+</tbody>
+</table>
+<table>
+<tbody>
+	<tr>
+		<td colspan="10" align="center"><input type="checkbox" id="check_one_time_payment" onclick="showRows('oneTime');">Enable One Time Prepayments:</td>
+	</tr>
+	<tr id="one_time_payment" style="display:none">
+		<td></td>
+		<td></td>
+		<td  align="center">Prepayment Month</td>
+		<td align="center"><select size="1" id="one_time_payment_month" >
+			<option selected=""value="1">Jan</option>
+			<option value="2">Feb</option>
+			<option value="3">Mar</option>
+			<option value="4">Apr</option>
+			<option value="5">May</option>
+			<option value="6">Jun</option>
+			<option value="7">Jul</option>
+			<option value="8">Aug</option>
+			<option value="9">Sep</option>
+			<option value="10">Oct</option>
+			<option value="11">Nov</option>
+			<option value="12">Dec</option>
+			</select></td>
+		<td align="right">Prepayment Year:</td>
+		<td>
+			<input type="number" min="2016" value="2016" id="one_time_payment_year" required/>
+		</td>
+		<td>Amount</td>
+		<td align="center"><input size="8" min="0" value="0" id="one_time_payment_amount">
+		</td>
+	</tr>
+</tbody>
+
+</table>
+
+<input type="submit" value="Show Amortization Schedule" formaction="javascript:submitAmortizationCalculation()" />
+</div>
+</center>
+</form>
+<div id="ams" style="display:none" align="center">
+	<table border="solid black">
+		<thead>
+			<th>Month</th>
+			<th>Year</th>
+			<th>Opening	Amount</th>
+			<th>Monthly	Interest Amount</th>
+			<th>Total	Interest Amount</th>
+			<th>Principal Amount</th>
+			<th>Closing	Amount</th>
+		</thead>
+		<tbody id="ams_body">
+			
+		</tbody>
+	</table>
+</div>
+
+<script type="text/javascript" src="js/app.js"></script>
+</body>
+</html>
